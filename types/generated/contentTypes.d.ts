@@ -362,6 +362,147 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiAProposAPropos extends Schema.SingleType {
+  collectionName: 'a_proposs';
+  info: {
+    singularName: 'a-propos';
+    pluralName: 'a-proposs';
+    displayName: 'A propos';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Titre: Attribute.String;
+    Contenu: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::a-propos.a-propos',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::a-propos.a-propos',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLeLivreLeLivre extends Schema.SingleType {
+  collectionName: 'le_livres';
+  info: {
+    singularName: 'le-livre';
+    pluralName: 'le-livres';
+    displayName: 'Le livre';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Titre: Attribute.String;
+    Contenu: Attribute.Blocks;
+    contenu_2: Attribute.Blocks;
+    Illustration: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::le-livre.le-livre',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::le-livre.le-livre',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMentionsLegalesMentionsLegales extends Schema.SingleType {
+  collectionName: 'mentions_legaless';
+  info: {
+    singularName: 'mentions-legales';
+    pluralName: 'mentions-legaless';
+    displayName: 'Mentions l\u00E9gales';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Titre: Attribute.String;
+    Contenu: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::mentions-legales.mentions-legales',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::mentions-legales.mentions-legales',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMicrofictionMicrofiction extends Schema.CollectionType {
+  collectionName: 'microfictions';
+  info: {
+    singularName: 'microfiction';
+    pluralName: 'microfictions';
+    displayName: 'microfiction';
+    description: 'une microfiction \u00E9pingl\u00E9e \u00E0 un point sur la carte';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    Heure: Attribute.String;
+    Texte_microfiction: Attribute.Blocks;
+    ordre_de_lecture: Attribute.Integer;
+    pingenerator: Attribute.String &
+      Attribute.CustomField<'plugin::pingenerator.pingenerator'>;
+    Date: Attribute.String;
+    GingkoBiloba: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::microfiction.microfiction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::microfiction.microfiction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -514,6 +655,10 @@ export interface PluginContentReleasesRelease extends Schema.CollectionType {
     releasedAt: Attribute.DateTime;
     scheduledAt: Attribute.DateTime;
     timezone: Attribute.String;
+    status: Attribute.Enumeration<
+      ['ready', 'blocked', 'failed', 'done', 'empty']
+    > &
+      Attribute.Required;
     actions: Attribute.Relation<
       'plugin::content-releases.release',
       'oneToMany',
@@ -568,6 +713,7 @@ export interface PluginContentReleasesReleaseAction
       'manyToOne',
       'plugin::content-releases.release'
     >;
+    isEntryValid: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -592,6 +738,7 @@ export interface PluginPingeneratorPingeneratorSetting
     singularName: 'pingenerator-setting';
     pluralName: 'pingenerator-settings';
     displayName: 'Pingenerator Settings';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -822,147 +969,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAProposAPropos extends Schema.SingleType {
-  collectionName: 'a_proposs';
-  info: {
-    singularName: 'a-propos';
-    pluralName: 'a-proposs';
-    displayName: 'A propos';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Titre: Attribute.String;
-    Contenu: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::a-propos.a-propos',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::a-propos.a-propos',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiLeLivreLeLivre extends Schema.SingleType {
-  collectionName: 'le_livres';
-  info: {
-    singularName: 'le-livre';
-    pluralName: 'le-livres';
-    displayName: 'Le livre';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Titre: Attribute.String;
-    Contenu: Attribute.Blocks;
-    contenu_2: Attribute.Blocks;
-    Illustration: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::le-livre.le-livre',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::le-livre.le-livre',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMentionsLegalesMentionsLegales extends Schema.SingleType {
-  collectionName: 'mentions_legaless';
-  info: {
-    singularName: 'mentions-legales';
-    pluralName: 'mentions-legaless';
-    displayName: 'Mentions l\u00E9gales';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Titre: Attribute.String;
-    Contenu: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::mentions-legales.mentions-legales',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::mentions-legales.mentions-legales',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMicrofictionMicrofiction extends Schema.CollectionType {
-  collectionName: 'microfictions';
-  info: {
-    singularName: 'microfiction';
-    pluralName: 'microfictions';
-    displayName: 'microfiction';
-    description: 'une microfiction \u00E9pingl\u00E9e \u00E0 un point sur la carte';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: true;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-  };
-  attributes: {
-    Heure: Attribute.String;
-    Texte_microfiction: Attribute.Blocks;
-    ordre_de_lecture: Attribute.Integer;
-    pingenerator: Attribute.String &
-      Attribute.CustomField<'plugin::pingenerator.pingenerator'>;
-    Date: Attribute.String;
-    GingkoBiloba: Attribute.Boolean & Attribute.DefaultTo<false>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::microfiction.microfiction',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::microfiction.microfiction',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -973,6 +979,10 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::a-propos.a-propos': ApiAProposAPropos;
+      'api::le-livre.le-livre': ApiLeLivreLeLivre;
+      'api::mentions-legales.mentions-legales': ApiMentionsLegalesMentionsLegales;
+      'api::microfiction.microfiction': ApiMicrofictionMicrofiction;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -982,10 +992,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::a-propos.a-propos': ApiAProposAPropos;
-      'api::le-livre.le-livre': ApiLeLivreLeLivre;
-      'api::mentions-legales.mentions-legales': ApiMentionsLegalesMentionsLegales;
-      'api::microfiction.microfiction': ApiMicrofictionMicrofiction;
     }
   }
 }

@@ -1,6 +1,7 @@
 import { prefixPluginTranslations } from "@strapi/helper-plugin";
 import pluginId from "./pluginId";
 import PluginIcon from "./components/PluginIcon";
+import pluginPermissions from "./permissions";
 import { getTrad } from "./utils/getTrad";
 
 export default {
@@ -38,10 +39,31 @@ export default {
 
     app.registerPlugin({
       id: pluginId,
+      // initializer: Initializer,
+      // isReady: false,
       name,
     });
   },
   bootstrap(app) {
+        app.addSettingsLink("global", {
+          intlLabel: {
+            id: `${pluginId}.plugin.name`,
+            defaultMessage: "PinGenerator",
+          },
+          id: "PinGenerator",
+          to: `/settings/${pluginId}`,
+          Component: async () => {
+            const Configuration = await import(
+              "./pages/Settings/Configuration"
+            );
+            return Configuration;
+          },
+          // permissions: {
+          //   action: "plugin::pingenerator.pingenerator-setting.read",
+          //   subject: null,
+          // },
+          permissions: pluginPermissions.main,
+        });
   },
 
   async registerTrads({ locales }) {

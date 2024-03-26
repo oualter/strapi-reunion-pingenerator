@@ -5,6 +5,7 @@ import axios from "axios";
 const pingeneratorRequests = {    
   getPingenconfig: async () => {
     const data = await axios.get(`../../pingenerator/pass-data/get`);
+    // console.log("pingeneratorRequests => ", data );
     return data;
   },
   // postPingenconfig: async () => {

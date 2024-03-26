@@ -13,7 +13,7 @@ module.exports = ({ strapi }) => ({
     return [...pinCoordsEntries, { referrer: ctx.request.header.referer }];
   },
   async getMapImg(ctx) {
-    // console.log("************* ROUTES getMapImg !!!! ***************");
+    console.log("************* ROUTES getMapImg !!!! ***************");
     let imageToPinOnUrlDB = await strapi.entityService.findOne(
       "plugin::pingenerator.pingenerator-setting",
       1,
@@ -26,7 +26,7 @@ module.exports = ({ strapi }) => ({
     }
   },
   async getConfig(ctx) {
-    // console.log("************* ROUTES GETCONFIG !!!! ***************");
+    console.log("************* ROUTES GETCONFIG !!!! ***************");
 
     let imageToPinOnUrlDB = await strapi.entityService.findOne(
       "plugin::pingenerator.pingenerator-setting",

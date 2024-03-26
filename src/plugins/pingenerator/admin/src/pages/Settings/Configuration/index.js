@@ -40,9 +40,6 @@ const Configuration = () => {
 
   const { get, post } = useFetchClient();
 
-  // const { minDate } = DatePicker;
-  console.log("DatePicker => ", DatePicker);
-
   const handleSave = async () => {
     setIsLoading(true);
     try {
@@ -101,21 +98,7 @@ const Configuration = () => {
   // console.log("||||| CONTROL imageToPinOnUrl ||||| ", imageToPinOnUrl);
 
    const [date, setDate] = useState();
-  //  return (
-  //    <DatePicker
-  //      onChange={setDate}
-  //      selectedDate={date}
-  //      label="Date picker"
-  //      name="datepicker"
-  //      clearLabel={"Clear the datepicker"}
-  //      onClear={() => setDate(undefined)}
-  //      selectedDateLabel={(formattedDate) =>
-  //        `Date picker, current is ${formattedDate}`
-  //      }
-  //      minDate={new Date(2000, 1, 1)}
-  //      maxDate={new Date(2040, 1, 1)}
-  //    />
-  //  );
+
 
   return (
     <>

@@ -19,7 +19,8 @@
   },
   "attributes": {
     "imageToPinOnUrl": {
-      "type": "string"
+      "type": "string",
+      "configurable": true
     }
   }
 }

@@ -4,11 +4,6 @@ import { useEffect, useState } from "react";
 export default function MapImage({ handleRegisterData }) {
   const { get } = useFetchClient();
   const [mapImageSrc, setMapImageSrc] = useState("");
-  //   let handleCalcXYCoords, handlePinOnMap;
-
-  //   const testClickOnComponent = () => {
-  //     console.log("Le component clic c'est chic");
-  //   };
 
   const HandleGetMapImg = async () => {
     const mapImageSrcGet = await get("/pingenerator/mapimage").then(
