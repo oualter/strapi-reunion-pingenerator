@@ -400,6 +400,7 @@ export interface ApiLeLivreLeLivre extends Schema.SingleType {
     singularName: 'le-livre';
     pluralName: 'le-livres';
     displayName: 'Le livre';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -407,8 +408,6 @@ export interface ApiLeLivreLeLivre extends Schema.SingleType {
   attributes: {
     Titre: Attribute.String;
     Contenu: Attribute.Blocks;
-    contenu_2: Attribute.Blocks;
-    Illustration: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "le-livre",
     "pluralName": "le-livres",
-    "displayName": "Le livre"
+    "displayName": "Le livre",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,19 +17,6 @@
     },
     "Contenu": {
       "type": "blocks"
-    },
-    "contenu_2": {
-      "type": "blocks"
-    },
-    "Illustration": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
     }
   }
 }
