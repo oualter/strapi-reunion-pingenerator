@@ -20,7 +20,8 @@
   "attributes": {
     "imageToPinOnUrl": {
       "type": "string",
-      "configurable": true
+      "configurable": true,
+      "required":false
     }
   }
 }

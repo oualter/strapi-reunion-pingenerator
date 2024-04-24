@@ -52,7 +52,7 @@ const Input = ({ attribute, name, onChange, value }) => {
       const pinsBridgeData = res.data;
       setSavedPins(pinsBridgeData);
     });
-    console.log("pinsBridgeReq => ", pinsBridgeReq);
+    // console.log("pinsBridgeReq => ", pinsBridgeReq);
   };
   // handle asynchronous setstate thanks to useeffects
   useEffect(() => {
