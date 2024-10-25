@@ -9,35 +9,28 @@ module.exports = [
         useDefaults: true,
         directives: {
           "connect-src": ["'self'", "https:"],
-          "img-src": [
-            "'self'",
-            "data:",
-            "blob:",
-            "res.cloudinary.com", // cloudinary images
-            "lh3.googleusercontent.com", // google avatars
-            "platform-lookaside.fbsbx.com", // facebook avatars
-            "dl.airtable.com", // strapi marketplace
-            // `https://${env('AWS_BUCKET')}.s3.${env(
-            //   'AWS_REGION'
-            // )}.amazonaws.com`,
-          ],
-          "media-src": [
-            "'self'",
-            "data:",
-            "blob:",
-            // `https://${env('AWS_BUCKET')}.s3.${env(
-            //   'AWS_REGION'
-            // )}.amazonaws.com`,
-          ],
+          "img-src": ["'self'", "data:", "blob:", "res.cloudinary.com"],
+          "media-src": ["'self'", "data:", "blob:"],
           upgradeInsecureRequests: null,
         },
+      },
+    },
+  },
+  {
+    name: "strapi::body",
+    config: {
+      formLimit: "256mb", // modify form body
+      jsonLimit: "256mb", // modify JSON body
+      textLimit: "256mb", // modify text body
+      formidable: {
+        maxFileSize: 250 * 1024 * 1024, // multipart data, modify here limit of uploaded file size
       },
     },
   },
   "strapi::cors",
   "strapi::poweredBy",
   "strapi::query",
-  "strapi::body",
+  // "strapi::body",
   "strapi::session",
   "strapi::favicon",
   "strapi::public",
