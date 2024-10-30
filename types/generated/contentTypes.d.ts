@@ -502,6 +502,40 @@ export interface ApiMicrofictionMicrofiction extends Schema.CollectionType {
   };
 }
 
+export interface ApiPhotoPhoto extends Schema.CollectionType {
+  collectionName: 'photos';
+  info: {
+    displayName: 'Photo';
+    pluralName: 'photos';
+    singularName: 'photo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Coordonnees: Attribute.String &
+      Attribute.CustomField<'plugin::pingenerator.pingenerator'>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::photo.photo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    Source: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    Texte_alternatif: Attribute.String & Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::photo.photo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease extends Schema.CollectionType {
   collectionName: 'strapi_releases';
   info: {
@@ -982,6 +1016,7 @@ declare module '@strapi/types' {
       'api::le-livre.le-livre': ApiLeLivreLeLivre;
       'api::mentions-legales.mentions-legales': ApiMentionsLegalesMentionsLegales;
       'api::microfiction.microfiction': ApiMicrofictionMicrofiction;
+      'api::photo.photo': ApiPhotoPhoto;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
